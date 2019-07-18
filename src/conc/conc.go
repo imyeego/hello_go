@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 )
 
 type Phone interface {
@@ -11,26 +12,23 @@ type Phone interface {
 
 type NokiaPhone struct {
 	name string
-	id int16
+	id   int16
 }
 
 type IPhone struct {
-
 }
 
 func (iPhone IPhone) play(s string) {
 	fmt.Println("playing " + s)
 }
 
-func (nokiaPhone NokiaPhone) call()  {
+func (nokiaPhone NokiaPhone) call() {
 	fmt.Println("I am Nokia, I can call you!")
 }
 
-func (nokiaPhone NokiaPhone) play(s string)  {
+func (nokiaPhone NokiaPhone) play(s string) {
 	fmt.Println("playing " + s)
 }
-
-
 
 func (iPhone IPhone) call() {
 	fmt.Println("I am iPhone, I can call you!")
@@ -43,11 +41,13 @@ func main() {
 	//
 	//time.Sleep(10 * time.Millisecond)
 	//testInterface()
-	testStruct()
+	//testStruct()
+	go say("world")
+	say("hello")
 }
 
-func gotest(i int)  {
-	j:= "liuzhao"
+func gotest(i int) {
+	j := "liuzhao"
 	fmt.Println(j)
 	fmt.Printf("go routine %d!\n", i)
 }
@@ -78,4 +78,11 @@ func testStruct() {
 
 	be = &DoubanBook{Book{"算法", "王小波", "小说", 34}, 8.6}
 	be.read("算法")
+}
+
+func say(s string) {
+	for i := 0; i < 5; i++ {
+		time.Sleep(1000 * time.Millisecond)
+		fmt.Println(s)
+	}
 }
