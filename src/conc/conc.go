@@ -42,8 +42,12 @@ func main() {
 	//time.Sleep(10 * time.Millisecond)
 	//testInterface()
 	//testStruct()
-	go say("world")
-	say("hello")
+	//go say("world")
+	//say("hello")
+	nextNumber := getSequence()
+	fmt.Println(nextNumber())
+	fmt.Println(nextNumber())
+	fmt.Println(nextNumber())
 }
 
 func gotest(i int) {
@@ -84,5 +88,14 @@ func say(s string) {
 	for i := 0; i < 5; i++ {
 		time.Sleep(1000 * time.Millisecond)
 		fmt.Println(s)
+	}
+}
+
+func getSequence() func() int {
+	i := 0
+	fmt.Println("i的值为:", i)
+	return func() int {
+		i++
+		return i
 	}
 }
