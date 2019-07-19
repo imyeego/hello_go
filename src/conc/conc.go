@@ -55,7 +55,8 @@ func main() {
 	//fmt.Println(nextNumber())
 	//fmt.Println(nextNumber())
 	//fmt.Println(nextNumber())
-	testJson()
+	//testJson()
+	testFunc()
 }
 
 func gotest(i int) {
@@ -122,4 +123,22 @@ func testJson() {
 		fmt.Println(err)
 	}
 	fmt.Println(stu)
+}
+
+func testFunc() {
+	//s := 3
+	//v := func(i int) float64{
+	//	return float64(i) * math.Pi
+	//}(s)
+	//fmt.Println(v)
+	v := linearFunc(2, multi)
+	fmt.Println(v)
+}
+
+func linearFunc(x int, f func(i int) int) int {
+	return f(x) + 5
+}
+
+func multi(i int) int {
+	return 10 * i
 }
