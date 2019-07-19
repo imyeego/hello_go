@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"time"
 )
@@ -8,6 +9,12 @@ import (
 type Phone interface {
 	call()
 	play(s string)
+}
+
+type Student struct {
+	Name string `json:"name"`
+	Age  int    `json:"age"`
+	Sex  string `json:"sex"`
 }
 
 type NokiaPhone struct {
@@ -44,10 +51,11 @@ func main() {
 	//testStruct()
 	//go say("world")
 	//say("hello")
-	nextNumber := getSequence()
-	fmt.Println(nextNumber())
-	fmt.Println(nextNumber())
-	fmt.Println(nextNumber())
+	//nextNumber := getSequence()
+	//fmt.Println(nextNumber())
+	//fmt.Println(nextNumber())
+	//fmt.Println(nextNumber())
+	testJson()
 }
 
 func gotest(i int) {
@@ -98,4 +106,20 @@ func getSequence() func() int {
 		i++
 		return i
 	}
+}
+
+func testJson() {
+	student := Student{"liuzhao", 16, "1"}
+	s, err := json.Marshal(student)
+	if err != nil {
+		_ = fmt.Errorf("Marshal Error %v", err)
+	}
+	fmt.Println(string(s))
+
+	var stu Student
+	err = json.Unmarshal(s, &stu)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(stu)
 }
